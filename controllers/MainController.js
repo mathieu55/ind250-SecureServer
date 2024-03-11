@@ -11,7 +11,7 @@ module.exports= {
     let result={
       "key":key  
     };
-    result.valid=encryptionService.validate();
+    result.valid=encryptionService.validate(key);
 
     if(result.valid){
       res.json(result);
@@ -20,5 +20,15 @@ module.exports= {
       result.message="invalid key";
       res.status(400).json(result);
     }
+  },
+
+  generate:(req,res)=>{
+    res.send(encryptionService.generate());
+  },
+
+  diag:(req,res)=>{
+    const config = require("../configs/Config");
+
+    res.json(config);
   }
 }

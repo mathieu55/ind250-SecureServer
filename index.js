@@ -18,12 +18,12 @@ server.use(express.json());
 server.use(cors());
 server.use(helmet());
 
-console.log('Starting');
 module.exports = server;
 require("./routes/MainRoute")(server);
 
-console.log(config);
-if (config.isLambda !== 1) {
+let isLambda = process.env.IND250_SECURE_SERVER_IS_LAMBDA || 0;
+
+if (isLambda !== 1) {
   console.log('Start as standalone on localhost:' + config.port);
   server.listen(config.port);
 } else console.log('Start as serverless');
