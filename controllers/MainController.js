@@ -42,6 +42,7 @@ module.exports= {
 
     try{
       let token = await getMetadataToken();
+
       options.headers={"X-aws-ec2-metadata-token":token};
 
       let {response,body} = await promiseRequest(options);
@@ -78,9 +79,10 @@ const promiseRequest = function(options){
 const getMetadataToken=async function(){
   let options={
     url:"http://169.254.169.254/latest/api/token",
-    method:"PUT"
+    method:"PUT",
+    headers:{"X-aws-ec2-metadata-token-ttl-seconds": 21600}
   };
-
+//TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/ 
 
   return promiseRequest(options).then(({res,body})=>{
     return body;
