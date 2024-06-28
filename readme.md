@@ -7,10 +7,11 @@ Le serveur de licence permet aussi de générer une licence gratuite.
 ## Démarrer et configurer le serveur de licence
 Pour démarrer le serveur de licence:
 ````
-nohup node index.js [port]
+nohup node index.js [port] &
 ````
 La commande `nohup` empêche la fermeture de l'application après la fin de l'exécution du script de démarrage.
-Si vous voulez tester les applications en **Windows** veuillez retirer `nohup`.
+Le `&` permet d'executé la ligne de commande en arrière plan.
+Si vous voulez tester les applications en **Windows** veuillez retirer `nohup` et `&`.
 
 ### Configuration du port écouté
 Le port écouté par le serveur de licence est **8080** par défaut. Ce port peut être changé de deux façons:
